@@ -1,0 +1,23 @@
+//$assetPath :"/assets/images";
+img{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    //padding:5px;
+}
+.Home-beforelogin
+{
+    width:100%;
+    height: 500px;
+    //height: 500px;
+    background: url(/./assets/Images/plane.jpg);
+    background-repeat: no-repeat;
+    background-size: 1500px 500px;
+}
+h1{
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}

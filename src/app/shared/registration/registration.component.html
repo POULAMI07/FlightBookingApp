@@ -1,0 +1,35 @@
+<div class="signup-form">
+    <form [formGroup]="RegForm">
+		<h2>Register</h2>
+		<p class="hint-text">Create your account</p>
+        <div class="form-group">
+			<div class="row">
+				<div class="col"><input type="text" formControlName="fname" placeholder="First Name"></div>
+				<div class="col"><input type="text" formControlName="lname" placeholder="Last Name"></div>
+			</div>        	
+        </div>
+        <div class="form-group">
+        	<input type="number" formControlName="phnum" placeholder="Phone Number" maxlength="10">
+        </div>
+        <div class="form-group">
+        	<input type="email" formControlName="email" placeholder="Email Id">
+        </div>
+        <div class="form-group">
+        	<input type="password" formControlName="password1" placeholder="Password" #pass1>
+        </div>
+        <div class="form-group">
+        	<div>
+        		<input type="password" formControlName="password2" placeholder="Confirm Password" #pass2>
+        	</div>
+        </div>
+        <pre>
+            Form Error - {{ RegForm.errors | json }}
+        </pre>
+		<div class="form-group">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+        </div>
+    </form>
+	<div class="text-center">Already have an account? <a href="#">Log in</a></div>
+</div>
+
+<app-footer></app-footer>

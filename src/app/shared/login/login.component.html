@@ -1,0 +1,67 @@
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">
+        <img src="assets/Images/logo.png" alt="" width="70" height="50" class="d-inline-block align-text-top">
+        makeMYtravel
+      </a>
+    </div>
+  </nav>
+
+<div class="container-fluid" align="center">
+	<div class="card border-success mb-3" style="max-width: 25rem;">
+		<div class="card-header bg-transparent border-success"><h1>Log in</h1></div>
+			<div class="card-body text-success">
+				<h5 class="card-title">Welcome</h5>
+				<!--<form>
+					<input type="text" id="login" name="email" class="fadeIn second" [(ngModel)]="email" placeholder="login" required><br/>
+					<br/><input type="text" id="password" name="password" class="fadeIn third" [(ngModel)]="password" placeholder="password" required>
+
+					<br/><br/>
+					<button class="btn btn-success" (click)=getLogin()>Login</button>
+				</form>
+				<button class="btn btn-success" (click)=getLogin()>Login</button>
+			</div>
+		<div >
+          <a href="#">Forgot password?</a>
+        </div>
+		<div class="card-footer bg-transparent border-success">
+			<p>Not a member?<a href="#">Register</a></p>
+		</div>
+	</div>
+</div>-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">
+        <img src="assets/Images/logo.png" alt="" width="70" height="50" class="d-inline-block align-text-top">
+        makeMYtravel
+      </a>
+    </div>
+</nav>
+<div class="container-fluid" align="center" style="padding-top: 20px;padding-bottom: 20px;">
+	<div class="card border-success mb-3" style="max-width: 25rem;">
+		<div class="card-header bg-transparent border-success"><h1>Log in</h1></div>
+			<div class="card-body text-success">
+				<h2 class="card-title">Welcome</h2>
+					<form ngNativeValidate #myForm="ngForm">
+						<input type="email" id="login" name="email" class="fadeIn second" [(ngModel)]="email" placeholder="login" required><br/>
+						<br/><input type="password" id="password" name="password" class="fadeIn third" [(ngModel)]="password" placeholder="password" minlength="4" required>
+
+						<br/><br/>
+						<button [disabled]="!myForm.form.valid" class="btn btn-success" (click)=getLogin()>Login</button>
+						
+						<!--using formGroup
+							<form [formGroup]="loginUserForm" (submit)="getLogin()">
+							<input formControlName="email" /><br/>
+							<input formControlName="password" /><br/>
+							<button [disabled]="loginUserForm.invalid">Login</button>
+						</form>-->
+					</form>
+			</div>
+			<a href="#">Forgot password?</a>
+			<div class="card-footer bg-transparent border-success">
+				<p>Not a member?<a href="#"> Register</a></p>
+			</div>
+	</div>
+	
+</div>
