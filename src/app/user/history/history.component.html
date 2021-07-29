@@ -1,0 +1,60 @@
+<div class="History">
+    <h2 style="color:blue;">Previous Bookings: </h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr align="center">
+                <th scope="col">Sl. No</th>
+                <th scope="col">Booking Id</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Journey Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">No of Passengers</th>
+                <th scope="col">Total Price paid</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!isEmpty" align="center">
+            <tr *ngFor="let s of ShowingDetails;let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                    <h3>{{s.bookingdetails.id}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.scheduleDetails.source}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.scheduleDetails.destination}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.scheduleDetails.date}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.scheduleDetails.time}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.bookingdetails.passengerinfo.length}}</h3>
+                </td>
+                <td>
+                    <h3>{{s.bookingdetails.pricepaid}}</h3>
+                </td>
+
+                <td *ngIf='s.bookingdetails.status=="Active"'>
+                    <button type="button" mat-icon-button style="margin-right:10px;" class="btn btn-success" disabled>
+                        Successful
+                    </button>
+                </td>
+                <td *ngIf='s.bookingdetails.status=="Inactive"'>
+                    <button type="button" mat-icon-button class="btn btn-danger" disabled>
+                        Cancelled
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="isEmpty" align="center">
+            <br />
+            <p>No past journey details avilable to fetch......</p>
+            <br />
+        </tbody>
+    </table>
+</div>

@@ -6,18 +6,16 @@ import { LoginSerService } from './_Services/login-ser.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private _authservice:LoginSerService, private _router:Router){}
-  canActivate():boolean{
-    if(this._authservice.loggedInAdmin())
-    {
+  constructor(private _authservice: LoginSerService, private _router: Router) { }
+  canActivate(): boolean {
+    if (this._authservice.loggedInAdmin()) {
       return true;
     }
-    else
-    {
+    else {
       this._router.navigate(['log-in'])
       return false;
     }
 
   }
-  
+
 }

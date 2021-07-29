@@ -1,0 +1,232 @@
+<div *ngIf="hasPassenger">
+    <button type="button" mat-icon-button style="float:right;margin-bottom: 5px;margin-right: 10px;"
+        class="btn btn-success" (click)="toggleShow()">
+        <mat-icon>add</mat-icon> Add Passengers
+    </button>
+</div>
+<div *ngIf="visible">
+    <div class="signup-form">
+        <form ngNativeValidate #myForm="ngForm">
+            <h2>Add Passenger</h2><br />
+            <p align="center">(*) modification will not be allowed once submitted</p><br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Full Name: </label>
+                    </div>
+                    <div class="col">
+                        <input name="fullname" [(ngModel)]="fullname" placeholder="Full Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Age: </label>
+                    </div>
+                    <div class="col">
+                        <input name="age" type="number" class="inp" [(ngModel)]="age" value="" placeholder="Age"
+                            required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Gender: </label>
+                    </div>
+                    <div class="col">
+                        <select class="gender-main" name="gender" [(ngModel)]="gender">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Select Meal type: </label>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="mealType" [(ngModel)]="mealType"
+                                value="Veg" required>
+                            <label class="form-check-label" for="inlineRadio1">Veg</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="mealType" [(ngModel)]="mealType"
+                                value="Non-Veg">
+                            <label class="form-check-label" for="inlineRadio2">Non-Veg</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="mealType" [(ngModel)]="mealType"
+                                value="None">
+                            <label class="form-check-label" for="inlineRadio2">None</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="!myForm.form.valid"
+                    (click)='SavePassenger()'>Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="PassengetTable" *ngIf="hasPassenger">
+    <h2 style="color:blue;">Passenger Details: </h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr align="center">
+                <th scope="col">Sl. No</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Meal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of passengerList;let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                    <h3>{{p.fullname}}</h3>
+                </td>
+                <td>
+                    <h3>{{p.age}}</h3>
+                </td>
+                <td>
+                    <h3>{{p.gender}}</h3>
+                </td>
+                <td>
+                    <h3>{{p.mealType}}</h3>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="PassengetTable" *ngIf="hasPassenger">
+    <h2 style="color:blue;">Ready to checkout?</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr align="center">
+                <th scope="col">No of passengerss</th>
+                <th scope="col">Total Price</th>
+                <th>Aciton</th>
+            </tr>
+        </thead>
+        <tbody align=center>
+            <tr>
+                <td>{{NumOfPassenger}}</td>
+                <td>
+                    <h3>{{total_price}}</h3>
+                </td>
+                <td><button type="submit" class="btn btn-primary" (click)="CheckOut()">Check Out</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf='!visible && !hasPassenger && !DoneBooking'>
+    <div class="signup-form">
+        <form ngNativeValidate #checkoutForm="ngForm">
+            <h2>Check Out</h2>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Use Discount Coupon: </label>
+                    </div>
+                    <div class="col">
+                        <select (change)="selectOption($event)" required="required">
+                            <option value="">--Choose Discount--</option>
+                            <option [value]="item.id" *ngFor="let item of disocunts">
+                                {{item.discount}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        Total price need to pay
+                    </div>
+                    <div class="col">
+                        <input type="number" name="total_price_copy" [(ngModel)]="total_price_copy" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Card No </label>
+                    </div>
+                    <div class="col">
+                        <input type="number" maxlength="16" name="card" [(ngModel)]="card" required="required" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label>Expire date </label>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <select class="select-exp" align=left name="exp_month" [(ngModel)]="exp_month"
+                                    required="required">
+                                    <option value="1">01(Jan)</option>
+                                    <option value="2">02(Feb)</option>
+                                    <option value="3">03(Mar)</option>
+                                    <option value="4">04(Apr)</option>
+                                    <option value="5">05(May)</option>
+                                    <option value="6">06(Jun)</option>
+                                    <option value="7">07(Jul)</option>
+                                    <option value="8">08(Aug)</option>
+                                    <option value="9">09(Sep)</option>
+                                    <option value="10">10(Oct)</option>
+                                    <option value="11">11(Nov)</option>
+                                    <option value="12">12(Dec)</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="select-exp" align=left name="exp_yr" [(ngModel)]="exp_yr"
+                                    required="required">
+                                    <option value="1">2022</option>
+                                    <option value="2">2023</option>
+                                    <option value="3">2024</option>
+                                    <option value="4">2025</option>
+                                    <option value="5">2026</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        cvv
+                    </div>
+                    <div class="col">
+                        <input type="password" pattern="[1-9]*" maxlength="3" minlength="3" name="cvv" [(ngModel)]="cvv"
+                            required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="!checkoutForm.form.valid"
+                    (click)='FinalPayment()'>Pay Now</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="success-body" *ngIf="DoneBooking" align="center">
+    <div class="alert alert-success" role="alert">
+        Booking Successful!<br />
+        Your PNR Number is : <b>{{pnr}}</b><br />
+        Thanks for choosing us.... Happy and Safe Journey!
+    </div>
+</div>

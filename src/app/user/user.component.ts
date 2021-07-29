@@ -7,26 +7,28 @@ import { LoginSerService } from 'src/app/_Services/login-ser.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  result:any={}
-  errorMessage:string=""
-  constructor(private loginSerService:LoginSerService,private router:Router) {
+  result: any = {}
+  name: any = ""
+  errorMessage: string = ""
+  constructor(private loginSerService: LoginSerService, private router: Router) {
 
-   }
+  }
 
   ngOnInit(): void {
-    this.loginSerService.getUsersDetails()
+    /*this.loginSerService.getUsersDetails()
     .subscribe((res:any)=>{
         this.result=res;
     },
      (err:any)=>{
         console.log(err)
         this.errorMessage = err.message;
-    })
+    })*/
+    this.name = sessionStorage.getItem('username')
   }
-    logout()
-    {
-      localStorage.clear();
-      this.router.navigate(['']);
-    }
+  logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.router.navigate(['']);
+  }
 
 }
